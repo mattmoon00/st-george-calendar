@@ -168,7 +168,7 @@ function App() {
       <h1>🏜️ St. George Vacation Home</h1>
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
-        initialView={isMobile ? 'dayGridWeek' : 'dayGridMonth'}
+        initialView="dayGridMonth"
         selectable={true}
         selectMirror={true}
         selectLongPressDelay={0}

@@ -33,10 +33,17 @@ h1 {
   overflow: hidden;
 }
 
-/* Highlight today's date */
 .fc-day-today {
   background-color: #e0f2fe !important;
   border: 1px solid #3b82f6;
+}
+
+.fc-daygrid-event {
+  font-size: 13px;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+  margin-bottom: 4px;
 }
 
 .fc-today-button {
@@ -53,7 +60,7 @@ h1 {
   background-color: #2563eb;
 }
 
-/* Modal styling */
+/* === Modal === */
 .modal {
   position: fixed;
   top: 0;
@@ -137,13 +144,36 @@ input:focus {
   background-color: #e5e7eb;
 }
 
-@media (max-width: 480px) {
+/* === Compact mobile layout === */
+@media (max-width: 600px) {
   h1 {
     font-size: 1.25rem;
   }
 
+  .fc {
+    font-size: 12px;
+    max-height: 400px;
+  }
+
+  .fc .fc-daygrid-day-frame {
+    padding: 4px !important;
+  }
+
+  .fc-daygrid-event {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+
+  .fc .fc-toolbar {
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+  }
+
   .modal-content {
     padding: 20px;
+    border-radius: 12px;
   }
 
   .modal-buttons {
