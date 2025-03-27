@@ -1,0 +1,162 @@
+
+/* Global styles */
+body {
+  font-family: 'Outfit', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9fafb;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+h1 {
+  font-weight: 600;
+  color: #1f2937;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.App {
+  width: 100%;
+  max-width: 960px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* FullCalendar styling */
+.fc {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.fc-daygrid-event {
+  font-size: 14px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Modal styling */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 24, 39, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #111827;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  transition: border 0.2s ease-in-out;
+}
+
+input[type="text"]:focus {
+  border-color: #3b82f6;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.modal-buttons button {
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.modal-buttons button:first-child {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.modal-buttons button:first-child:hover {
+  background-color: #2563eb;
+}
+
+.modal-buttons button:last-child {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.modal-buttons button:last-child:hover {
+  background-color: #e5e7eb;
+}
+input[type="date"] {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  transition: border 0.2s ease-in-out;
+}
+
+input[type="date"]:focus {
+  border-color: #3b82f6;
+}
+.fc-daygrid-event {
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 500;
+}
+@media (max-width: 600px) {
+  .App {
+    padding: 16px;
+  }
+
+  .modal-content {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 1.25rem;
+  }
+}
