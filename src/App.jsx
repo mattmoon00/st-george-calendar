@@ -26,7 +26,6 @@ function App() {
   const [nameInput, setNameInput] = useState('');
   const [editingEvent, setEditingEvent] = useState(null);
   const initialLoadDone = useRef(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
 
   useEffect(() => {
     const savedEvents = localStorage.getItem(STORAGE_KEY);
@@ -61,12 +60,6 @@ function App() {
         console.error('Failed to parse logs:', e);
       }
     }
-
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 600);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
