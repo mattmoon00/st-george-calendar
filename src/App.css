@@ -1,3 +1,4 @@
+/* === Global styles === */
 body {
   font-family: 'Outfit', sans-serif;
   margin: 0;
@@ -8,26 +9,30 @@ body {
   justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
-  padding: 20px;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
 h1 {
   font-weight: 600;
   color: #1f2937;
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 1.5rem;
+  margin-bottom: 30px;
+  font-size: 2rem;
 }
 
 .App {
   width: 100%;
   max-width: 960px;
-  padding: 16px;
+  padding: 20px;
   background-color: #ffffff;
   border-radius: 16px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  margin: auto;
 }
 
+/* === FullCalendar === */
 .fc {
   border-radius: 12px;
   overflow: hidden;
@@ -39,11 +44,12 @@ h1 {
 }
 
 .fc-daygrid-event {
-  font-size: 13px;
-  padding: 2px 10px;
-  border-radius: 20px;
+  font-size: 14px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin: 2px 0;
+  display: block;
   font-weight: 500;
-  margin-bottom: 4px;
 }
 
 .fc-today-button {
@@ -77,9 +83,9 @@ h1 {
 
 .modal-content {
   background: white;
-  padding: 24px;
+  padding: 32px;
   border-radius: 16px;
-  width: 100%;
+  width: 90%;
   max-width: 400px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   text-align: center;
@@ -89,7 +95,7 @@ h1 {
   margin-bottom: 20px;
   font-weight: 600;
   color: #111827;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
 }
 
 input[type="text"],
@@ -97,23 +103,25 @@ input[type="date"] {
   width: 100%;
   padding: 12px 15px;
   font-size: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   border: 1px solid #d1d5db;
   border-radius: 10px;
+  outline: none;
   background-color: #ffffff;
   color: #1f2937;
-  outline: none;
+  transition: border 0.2s ease-in-out;
 }
 
-input:focus {
+input[type="text"]:focus,
+input[type="date"]:focus {
   border-color: #3b82f6;
 }
 
 .modal-buttons {
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 12px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .modal-buttons button {
@@ -144,39 +152,53 @@ input:focus {
   background-color: #e5e7eb;
 }
 
-/* === Compact mobile layout === */
+/* === Mobile Styles === */
 @media (max-width: 600px) {
+  body {
+    padding: 20px 10px;
+  }
+
+  .App {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
   h1 {
     font-size: 1.25rem;
+    margin-bottom: 16px;
   }
 
   .fc {
-    font-size: 12px;
-    max-height: 400px;
+    font-size: 13px;
+    max-height: none;
   }
 
   .fc .fc-daygrid-day-frame {
-    padding: 4px !important;
+    padding: 4px 2px !important;
   }
 
   .fc-daygrid-event {
-    font-size: 11px;
-    padding: 2px 8px;
-    border-radius: 999px;
+    font-size: 12px;
+    padding: 2px 10px;
+    border-radius: 9999px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .fc .fc-toolbar {
+  .fc-toolbar {
     flex-direction: column;
-    gap: 6px;
     align-items: center;
+    gap: 6px;
   }
 
   .modal-content {
     padding: 20px;
-    border-radius: 12px;
   }
 
   .modal-buttons {
     flex-direction: column;
+    gap: 10px;
   }
 }
