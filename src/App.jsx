@@ -79,7 +79,6 @@ function App() {
   const addLog = (action, name, start, end) => {
     const now = new Date().toLocaleString();
     const entry = { timestamp: now, action, name, start, end };
-    console.log('Logging:', entry);
     setLogs(prev => [entry, ...prev]);
   };
 
@@ -177,33 +176,31 @@ function App() {
         plugins={[dayGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
         selectable={true}
+        selectMirror={true}
+        longPressDelay={100}
+        unselectAuto={false}
         select={handleSelect}
         eventClick={handleEventClick}
         events={events}
         eventDisplay="block"
-        eventColor=""
       />
 
       {showModal && (
         <div className="modal">
           <div className="modal-content">
             <h2>{editingEvent ? 'Edit Reservation' : 'New Reservation'}</h2>
-            <div style={{ marginBottom: '15px' }}>
-              <label>Start Date:</label>
-              <input
-                type="date"
-                value={selectedRange.start}
-                onChange={(e) => setSelectedRange({ ...selectedRange, start: e.target.value })}
-              />
-            </div>
-            <div style={{ marginBottom: '20px' }}>
-              <label>End Date:</label>
-              <input
-                type="date"
-                value={selectedRange.end}
-                onChange={(e) => setSelectedRange({ ...selectedRange, end: e.target.value })}
-              />
-            </div>
+            <label>Start Date:</label>
+            <input
+              type="date"
+              value={selectedRange.start}
+              onChange={(e) => setSelectedRange({ ...selectedRange, start: e.target.value })}
+            />
+            <label>End Date:</label>
+            <input
+              type="date"
+              value={selectedRange.end}
+              onChange={(e) => setSelectedRange({ ...selectedRange, end: e.target.value })}
+            />
             <input
               type="text"
               placeholder="Your name"
@@ -222,35 +219,6 @@ function App() {
           </div>
         </div>
       )}
-
-      {/* Floating Log Button + Panel */}
-      <div style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 9999 }}>
-        <button
-          onClick={() => setShowLog(!showLog)}
-          style={{ padding: '8px 12px', fontSize: '14px', borderRadius: '6px', backgroundColor: '#333', color: 'white', border: 'none' }}
-        >
-          {showLog ? 'Hide Log' : 'Show Log'}
-        </button>
-
-        {showLog && (
-          <div style={{ marginTop: '10px', backgroundColor: '#fff', border: '1px solid #ccc', borderRadius: '8px', padding: '10px', width: '300px', maxHeight: '250px', overflowY: 'auto', boxShadow: '0 2px 8px rgba(0,0,0,0.2)' }}>
-            <h4 style={{ marginTop: 0 }}>📜 Activity Log</h4>
-            {logs.length === 0 ? (
-              <p style={{ fontSize: '0.85rem', color: '#666' }}>No activity yet.</p>
-            ) : (
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                {logs.map((log, index) => (
-                  <li key={index} style={{ marginBottom: '0.5rem', fontSize: '0.85rem' }}>
-                    <strong>{log.timestamp}</strong><br />
-                    {log.name} <em>{log.action}</em><br />
-                    {log.start} → {log.end}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        )}
-      </div>
     </div>
   );
 }
