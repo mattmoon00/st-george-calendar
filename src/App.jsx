@@ -21,12 +21,12 @@ function App() {
   const [events, setEvents] = useState([]);
   const [userColors, setUserColors] = useState({});
   const [logs, setLogs] = useState([]);
-  const [showLog, setShowLog] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedRange, setSelectedRange] = useState({ start: null, end: null });
   const [nameInput, setNameInput] = useState('');
   const [editingEvent, setEditingEvent] = useState(null);
   const initialLoadDone = useRef(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
 
   useEffect(() => {
     const savedEvents = localStorage.getItem(STORAGE_KEY);
@@ -48,8 +48,7 @@ function App() {
 
     if (savedColors) {
       try {
-        const parsed = JSON.parse(savedColors);
-        setUserColors(parsed);
+        setUserColors(JSON.parse(savedColors));
       } catch (e) {
         console.error('Failed to parse user colors:', e);
       }
@@ -57,12 +56,17 @@ function App() {
 
     if (savedLogs) {
       try {
-        const parsed = JSON.parse(savedLogs);
-        setLogs(parsed);
+        setLogs(JSON.parse(savedLogs));
       } catch (e) {
         console.error('Failed to parse logs:', e);
       }
     }
+
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 600);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
@@ -75,12 +79,6 @@ function App() {
       localStorage.setItem(LOG_KEY, JSON.stringify(logs));
     }
   }, [events, userColors, logs]);
-
-  const addLog = (action, name, start, end) => {
-    const now = new Date().toLocaleString();
-    const entry = { timestamp: now, action, name, start, end };
-    setLogs(prev => [entry, ...prev]);
-  };
 
   const handleSelect = (arg) => {
     setSelectedRange({ start: arg.startStr, end: arg.endStr });
@@ -111,7 +109,6 @@ function App() {
       const existingStart = new Date(event.start);
       const existingEnd = new Date(event.end);
       existingEnd.setDate(existingEnd.getDate() - 1);
-
       return newStart <= existingEnd && newEnd >= existingStart;
     });
   };
@@ -151,10 +148,8 @@ function App() {
 
     if (editingEvent) {
       setEvents(events.map(ev => (ev.id === editingEvent.id ? updatedEvent : ev)));
-      addLog('Updated', nameInput, newStart, newEnd);
     } else {
       setEvents([...events, updatedEvent]);
-      addLog('Created', nameInput, newStart, newEnd);
     }
 
     setShowModal(false);
@@ -164,20 +159,20 @@ function App() {
   const handleDelete = () => {
     if (!editingEvent) return;
     setEvents(events.filter(ev => ev.id !== editingEvent.id));
-    addLog('Deleted', editingEvent.title, editingEvent.start, editingEvent.end);
     setShowModal(false);
     setEditingEvent(null);
   };
 
   return (
     <div className="App">
-      <h1>🏜️ St. George Vacation Home Calendar</h1>
+      <h1>🏜️ St. George Vacation Home</h1>
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
-        initialView="dayGridMonth"
+        initialView={isMobile ? 'dayGridWeek' : 'dayGridMonth'}
         selectable={true}
         selectMirror={true}
-        longPressDelay={100}
+        selectLongPressDelay={0}
+        selectMinDistance={1}
         unselectAuto={false}
         select={handleSelect}
         eventClick={handleEventClick}

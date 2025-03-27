@@ -1,4 +1,3 @@
-/* === Global styles === */
 body {
   font-family: 'Outfit', sans-serif;
   margin: 0;
@@ -9,45 +8,37 @@ body {
   justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
-  padding: 40px 20px;
+  padding: 20px;
 }
 
 h1 {
   font-weight: 600;
   color: #1f2937;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
 }
 
 .App {
   width: 100%;
   max-width: 960px;
-  padding: 20px;
+  padding: 16px;
   background-color: #ffffff;
   border-radius: 16px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
 }
 
-/* === FullCalendar styling === */
 .fc {
   border-radius: 12px;
   overflow: hidden;
 }
 
-/* Highlight today’s cell in the calendar */
+/* Highlight today's date */
 .fc-day-today {
   background-color: #e0f2fe !important;
   border: 1px solid #3b82f6;
 }
 
-/* Events inside calendar */
-.fc-daygrid-event {
-  font-size: 14px;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-/* === Today Button === */
 .fc-today-button {
   background-color: #3b82f6;
   color: white;
@@ -62,7 +53,7 @@ h1 {
   background-color: #2563eb;
 }
 
-/* === Modal Styling === */
+/* Modal styling */
 .modal {
   position: fixed;
   top: 0;
@@ -74,23 +65,14 @@ h1 {
   justify-content: center;
   align-items: center;
   z-index: 100;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  padding: 20px;
 }
 
 .modal-content {
   background: white;
-  padding: 32px;
+  padding: 24px;
   border-radius: 16px;
-  width: 90%;
+  width: 100%;
   max-width: 400px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   text-align: center;
@@ -100,6 +82,7 @@ h1 {
   margin-bottom: 20px;
   font-weight: 600;
   color: #111827;
+  font-size: 1.2rem;
 }
 
 input[type="text"],
@@ -107,24 +90,22 @@ input[type="date"] {
   width: 100%;
   padding: 12px 15px;
   font-size: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   border: 1px solid #d1d5db;
   border-radius: 10px;
-  outline: none;
   background-color: #ffffff;
   color: #1f2937;
-  transition: border 0.2s ease-in-out;
+  outline: none;
 }
 
-input[type="text"]:focus,
-input[type="date"]:focus {
+input:focus {
   border-color: #3b82f6;
 }
 
-/* === Modal Buttons === */
 .modal-buttons {
   display: flex;
-  gap: 12px;
+  gap: 10px;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -156,35 +137,16 @@ input[type="date"]:focus {
   background-color: #e5e7eb;
 }
 
-/* === Floating Audit Log === */
-.floating-log {
-  margin-top: 10px;
-  background-color: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  padding: 1rem;
-  width: 300px;
-  max-height: 250px;
-  overflow-y: auto;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.25rem;
+  }
 
-.floating-log h4 {
-  margin: 0 0 0.75rem;
-  font-size: 1rem;
-  color: #2d3748;
-}
+  .modal-content {
+    padding: 20px;
+  }
 
-.floating-log ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.floating-log li {
-  font-size: 0.85rem;
-  margin-bottom: 0.75rem;
-  border-bottom: 1px solid #edf2f7;
-  padding-bottom: 0.5rem;
-  color: #4a5568;
+  .modal-buttons {
+    flex-direction: column;
+  }
 }
