@@ -1,3 +1,4 @@
+/* === Global styles === */
 body {
   font-family: 'Outfit', sans-serif;
   margin: 0;
@@ -27,25 +28,26 @@ h1 {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
 }
 
-/* FullCalendar styling */
+/* === FullCalendar styling === */
 .fc {
   border-radius: 12px;
   overflow: hidden;
 }
 
+/* Highlight today’s cell in the calendar */
+.fc-day-today {
+  background-color: #e0f2fe !important;
+  border: 1px solid #3b82f6;
+}
+
+/* Events inside calendar */
 .fc-daygrid-event {
   font-size: 14px;
   padding: 2px 6px;
   border-radius: 4px;
 }
 
-/* Highlight today's cell */
-.fc-day-today {
-  background-color: #e0f2fe !important;
-  border: 1px solid #3b82f6;
-}
-
-/* Today button */
+/* === Today Button === */
 .fc-today-button {
   background-color: #3b82f6;
   color: white;
@@ -60,7 +62,7 @@ h1 {
   background-color: #2563eb;
 }
 
-/* Modal styling */
+/* === Modal Styling === */
 .modal {
   position: fixed;
   top: 0;
@@ -73,7 +75,6 @@ h1 {
   align-items: center;
   z-index: 100;
   animation: fadeIn 0.3s ease-in-out;
-  padding: 20px;
 }
 
 @keyframes fadeIn {
@@ -87,9 +88,9 @@ h1 {
 
 .modal-content {
   background: white;
-  padding: 24px;
+  padding: 32px;
   border-radius: 16px;
-  width: 100%;
+  width: 90%;
   max-width: 400px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   text-align: center;
@@ -120,11 +121,11 @@ input[type="date"]:focus {
   border-color: #3b82f6;
 }
 
+/* === Modal Buttons === */
 .modal-buttons {
   display: flex;
   gap: 12px;
   justify-content: center;
-  flex-wrap: wrap;
 }
 
 .modal-buttons button {
@@ -155,15 +156,35 @@ input[type="date"]:focus {
   background-color: #e5e7eb;
 }
 
-/* Responsive fix */
-@media (max-width: 480px) {
-  .modal-content {
-    padding: 20px;
-    border-radius: 12px;
-  }
+/* === Floating Audit Log === */
+.floating-log {
+  margin-top: 10px;
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem;
+  width: 300px;
+  max-height: 250px;
+  overflow-y: auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
 
-  .modal-buttons {
-    flex-direction: column;
-    gap: 10px;
-  }
+.floating-log h4 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  color: #2d3748;
+}
+
+.floating-log ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.floating-log li {
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #edf2f7;
+  padding-bottom: 0.5rem;
+  color: #4a5568;
 }
